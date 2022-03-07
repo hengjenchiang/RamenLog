@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="一個紀錄討論交流台灣拉麵的小地方" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ramenlog</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <!-- normalize.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- bulma.io-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
+    />
+    <!-- material design icon-->
+    <link rel="stylesheet" href="/stylesheets/css/starability-checkmark.css" />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+
+    <script
+      src="https://kit.fontawesome.com/b99966344c.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- fontawesome5 -->
+  </head>
+
+  <body class="">
+    <!-- navbar -->
+    <%- include('../partials/navbar')%>
+    <main class="mt-5">
+      <section class="section">
+        <div class="container">
+          <!-- flash -->
+          <%- include('../partials/flash')%>
+          <!-- body -->
+          <%- body -%>
+        </div>
+      </section>
+    </main>
+    <%- include('../partials/footer')%>
+    <!-- footer -->
+
+    <script src="/javascripts/closeButton.js"></script>
+  </body>
+</html>

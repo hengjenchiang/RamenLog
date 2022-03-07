@@ -1,0 +1,111 @@
+<%- layout('layout/boilerplate') %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-one-third"></div>
+      <div class="column is-one-third register-form round-border">
+        <form
+          action="/register"
+          method="POST"
+          class="form"
+          enctype="multipart/form-data"
+        >
+          <h1 class="title center-text">註冊拉麵log</h1>
+          <div class="field">
+            <label for="new-username" class="label">帳號</label>
+            <div class="control">
+              <input
+                type="text"
+                class="input"
+                id="new-username"
+                placeholder="帳號"
+                name="user[username]"
+                required
+                autofocus
+                autocomplete="off"
+              />
+            </div>
+            <!-- FIXME: autofilling acct. & pwd still a problem -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#preventing_autofilling_with_autocompletenew-password -->
+          </div>
+
+          <div class="field">
+            <label for="new-email" class="label">email</label>
+            <div class="control">
+              <input
+                type="email"
+                class="input"
+                name="user[email]"
+                id="new-email"
+                placeholder="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="new-nickname" class="label">暱稱</label>
+            <div class="control">
+              <input
+                type="text"
+                class="input"
+                name="user[nickname]"
+                id="new-nickname"
+                placeholder="暱稱"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="new-profilePic">大頭貼 (選填)</label>
+            <div class="file has-name is-fullwidth is-right">
+              <label class="file-label">
+                <input
+                  class="file-input"
+                  type="file"
+                  name="profilePic"
+                  id="new-profilePic"
+                />
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label"> 選擇檔案… </span>
+                </span>
+                <span class="file-name" id="file-name"></span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <button type="button" class="button is-danger reset-file">
+              刪除照片
+            </button>
+          </div>
+
+          <div class="field">
+            <label for="new-password" class="label">密碼</label>
+            <div class="control">
+              <input
+                type="password"
+                class="input"
+                name="user[password]"
+                placeholder="密碼"
+                id="new-password"
+                required
+                autocomplete="new-password"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <button class="button is-warning">註冊</button>
+            <a class="button is-danger" href="/ramens">取消</a>
+          </div>
+        </form>
+      </div>
+      <div class="column is-one-third"></div>
+    </div>
+  </div>
+</section>

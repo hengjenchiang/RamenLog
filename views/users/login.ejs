@@ -1,0 +1,42 @@
+<%- layout('layout/boilerplate') %>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title center-text">登入拉麵log</h1>
+            <div class="columns is-multiline">
+                <!-- <div class="column"></div> -->
+                <div class="column is-one-third is-offset-4">
+                    <form action="/login" method="POST" class="form">
+
+                        <div class="field">
+                            <label for="current-username" class="label">帳號</label>
+                            <div class="control">
+                                <input type="text" class="input" id="current-username" placeholder="帳號" name="username"
+                                    required autofocus >
+                            </div>
+                            <!-- FIXME: autofilling acct. & pwd still a problem -->
+                            <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#preventing_autofilling_with_autocompletenew-password -->
+                        </div>
+
+
+                        <div class="field">
+                            <label for="current-password" class="label">密碼</label>
+                            <div class="control">
+                                <input type="password" class="input" name="password" placeholder="密碼"
+                                    id="current-password" required autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-warning">登入</button>
+                                <a class="button is-danger" href="/ramens">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="column"></div> -->
+            </div>
+        </div>
+
+    </section>

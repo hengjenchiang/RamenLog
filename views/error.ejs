@@ -1,0 +1,30 @@
+<%- layout('layout/boilerplate') %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-2"></div>
+      <div class="column">
+        <!-- FIXME: 開發中顯示訊息 prd要在更改為中文 使用process.env.NODE_ENV 參數-->
+        <% if(process.env.NODE_ENV !== 'production' ){ %>
+        <div class="notification is-danger">
+          <%= err.message %> <%= err.statusCode %>
+          <br />
+          <%= err.stack %>
+        </div>
+        <% } else if(err.statusCode === 404){ %>
+        <div class="notification is-danger">
+          <%= err.message %> <%= err.statusCode %>
+          <p>找不到此網址404</p>
+        </div>
+        <% } else{ %>
+        <div class="notification is-danger">
+          <button class="delete"></button>
+          <p>OOPS! 有什麼地方出錯了，請回前一頁</p>
+          <!-- FIXME: 上一頁按鈕 -->
+        </div>
+        <% } %>
+      </div>
+      <div class="column is-2"></div>
+    </div>
+  </div>
+</section>

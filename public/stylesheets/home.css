@@ -1,0 +1,47 @@
+/* body{
+    background-color: #000;
+} */
+
+body{
+    background-image: url('../img/bgi2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    height: auto;
+    background-size: cover;
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.center-text{
+    text-align: center;
+}
+
+
+.notification{
+    white-space: pre-line !important;
+}
+
+.navbar{
+background: #FFEFBA;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #BDC8CB, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #BDC8CB, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.comment-figure{
+    width: 100px;
+}
+
+div.register-form{
+    background-color: rgba(216, 216, 216, 0.4);
+}
+
+.round-border{
+    border-radius: 5px;
+}

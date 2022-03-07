@@ -1,0 +1,138 @@
+<%- layout('layout/boilerplate') %>
+
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!-- leftside : ramen info -->
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image">
+                            <!-- <% if( ramen.images.length > 0) {%> -->
+                                <img src="<%= ramen.images[0].url%>" alt="">
+                            <!-- <% } %>   -->
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="title is-5"><%= ramen.title %></p>
+                        <p class="subtitle"><%= ramen.product %></p>
+                        <p class="notification"><%= ramen.thoughts %></p>
+                        <p class="has-text-right">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span><%= ramen.author.username %></span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <% if(currentUser && ramen.author._id.equals(currentUser._id)){ %> 
+                            <a href="/ramens/<%= ramen._id%>/edit" class="button is-info ">編輯</a>
+                            <form action="/ramens/<%= ramen._id %>/?_method=DELETE" method="POST" class="is-inline">
+                                <button class="button is-danger">刪除</button>
+                            </form>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+            <!-- leftside : ramen info -->
+        
+            <!-- rightside : review -->
+            <div class="column">
+                <div class="columns is-multiline">
+                    <% if(!currentUser){ %>
+                        <div class="column is-full">
+                            <div class="notification is-warning"><button class="delete"></button>請先登入才能留言唷！</div>
+                        </div>
+                    <% } %>
+                    <!-- review form -->
+                    <% if(currentUser){ %> 
+                    <div class="column is-full">
+                        <form action="/ramens/<%= ramen._id %>/reviews" method="POST" class="form">
+                            <div class="field">
+                                <label class="label is-4" for="reviews">留個評論吧！</label>
+                                <div class="control">
+                                    <textarea class="textarea is-grey-light" placeholder="您的評論..." name="body" id="reviews"></textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="rating" class="label">評價</label>
+                                <div class="control">
+                                    <input class="form-range " type="range" name="rating" id="rating" min='1' max="10" step="0.1" style="width: 100%; ">
+                                </div>                                
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-link">送出</button>
+                                </div>
+                                <div class="control">
+                                    <input type="reset" class="button is-link is-light" value="重置"></input>
+                                    <!-- FIXME:  檢查需要review有內容才能post-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <% } %> 
+                    <!-- ejs loop for all reviews -->
+                    <% for(let review of ramen.reviews.reverse()){ %>
+                    <div class="column is-full">
+                        <div class="card review-card">
+                            <article class="media">
+                                <figure class="media-left comment-figure">
+                                    <p class="image is-1by1">
+                                        <% if(review.author.profilePic.url){ %>
+                                            <img src="<%= review.author.profilePic.url %>" alt="" >
+                                        <% } else{ %>
+                                            <img src="/img/profile.jpg" alt="default">  
+                                        <% } %> 
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong><%= review.author.nickname%></strong> <small><i>@<%= review.author.username %></i></small> <small><%= format(review.date, ('yyyy-MMM-dd  hh:mm aaaa')) %> </small>   
+                                        </p>
+                                        <% if(review.rating - Math.floor(review.rating) <0.5 ){ %>
+                                            <p class="starability-result" data-rating="<%= Math.floor(review.rating) %>"></p>
+                                        <% }else{ %>
+                                            <p class="starability-result" data-rating="<%= Math.floor(review.rating)+0.5 %>"></p>
+                                        <% } %>
+                                        <p class="notification" style="margin-right: 1rem;"><%= review.body %></p>
+                                    </div>
+                                    <nav class="level" style="margin-bottom:1rem;margin-right: 1rem;">
+                                        <div class="level-left">
+                                            <a class="level-item">
+                                                <span class="icon is-small"><i class="fas fa-reply"></i></span>
+                                            </a>
+                                            <a class="level-item">
+                                                <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+                                            </a>
+                                            <a class="level-item">
+                                                <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                                            </a>
+                                        </div>
+                                        <% if(currentUser && review.author.equals(currentUser._id)){ %> 
+                                        <form action="/ramens/<%= ramen._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                            <button class="button is-danger is-outlined is-small">
+                                                <span>刪除</span>
+                                                <span class="icon is-small">
+                                                    <i class="fas fa-times"></i>
+                                                </span>
+                                            </button>
+                                        </form>
+                                        <% } %> 
+                                    </nav>
+                                    
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <% } %> 
+                </div> 
+            </div>
+            <!-- rightside : review -->
+        </div>
+    </div>
+</section>

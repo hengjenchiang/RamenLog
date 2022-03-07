@@ -1,0 +1,41 @@
+<%- layout('layout/boilerplate') %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% for(let i=ramens.length-1; i >= 0; i--){ %>
+      <div class="column is-2"></div>
+      <div class="column is-2">
+        <div class="image">
+          <figure class="image">
+            <% if(ramens[i].images.length > 0){ %>
+            <img
+              class="is-rounded"
+              src="<%= ramens[i].images[0].url %> "
+              alt="Placeholder image"
+            />
+            <% } %>
+          </figure>
+        </div>
+      </div>
+      <div class="box column is-6">
+        <div class="card-content">
+          <p class="title is-5 is-warning"><%= ramens[i].title %></p>
+        </div>
+        <div class="card-content">
+          <p class="subtitle is-6">
+            評分：<strong><%= ramens[i].rating %> / 10</strong>
+          </p>
+          <div class="content">
+            <p><%= ramens[i].thoughts %></p>
+            <a href="/ramens/<%= ramens[i]._id %>" class="button is-warning"
+              >詳細...</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="column is-2"></div>
+      <% } %>
+    </div>
+  </div>
+</section>
