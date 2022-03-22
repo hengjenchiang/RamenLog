@@ -6,19 +6,13 @@ module.exports.getRegisterForm = async (req, res, next) => {
 
 module.exports.postNewUser = async (req, res, next) => {
   const { username, password, nickname, email } = req.body.user;
-
-  /**
-   * FIXME: 帳號是若已存在 還是會上傳照片，想到的解決方法：
-   * 1. 增加一個middleware提前檢查帳號是否存在
-   * 2. 使用表單的驗證功能，提前擋住post request (?不確定是否可行)
-   * 3. error 後，destroy 上傳檔案（沒效率）
-   */
   const newUser = new User({ username, email, nickname });
   if (req.file)
     newUser.profilePic = { url: req.file.path, filename: req.file.filename };
   else newUser.profilePic = { url: '/img/profile.jpg', filename: 'no-pick' };
   User.register(newUser, password, (err) => {
     if (err) {
+      console.log(err);
       req.flash('error', err.message);
       return res.redirect('/register');
     }

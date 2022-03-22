@@ -18,10 +18,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const multer = require('multer');
 const colors = require('colors');
 const ExpressError = require('./utils/ExpressError'); // usage: new ExpressError(message, statusCode)
-const { cloudinaryStorage } = require('./cloudinary/index');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -113,21 +111,6 @@ app.use('/ramens/:id/reviews', reviewRouter);
 app.use('/', userRouter);
 //----------------------------------------------------------
 
-/**---------------------------------------------------------
- * User - CRUD
- *
- * Register form: GET /register
- * Register : POST /register
- * Login form : GET /login
- * Login : POST /login
- * Logout : POST /logout
- * Delete : DELETE /user/:id TODO: 刪除的時候 既有的post 留言 皆需更改為former member 刪掉cloudinary上的照片
- * Reset pwd : GET / IMPROVE:
- * Confim email : IMPROVE:
- * Personal page : IMPROVE:
- */
-//----------------------------------------------------------
-
 /**
  * Home Page
  */
@@ -142,12 +125,6 @@ app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
 
-/**
- * Middleware
- * moved to separate js file
- */
-
-// TODO:  error.ejs
 /** Error middleware */
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;

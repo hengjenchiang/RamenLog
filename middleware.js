@@ -1,5 +1,10 @@
 const Ramen = require('./models/ramen');
 const Review = require('./models/review');
+const {
+  validateRamenSchema,
+  validateReviewSchema,
+} = require('./validateSchema');
+const ExpressError = require('./utils/ExpressError');
 
 module.exports.isLoggedIn = function (req, res, next) {
   if (!req.isAuthenticated()) {
@@ -26,6 +31,40 @@ module.exports.isReviewAuthor = async function (req, res, next) {
   if (!req.user.equals(review.author)) {
     req.flash('error', '你不是該留言的作者喔！不能進行變更刪除');
     return res.redirect(`/ramens/${req.params.id}`);
+  }
+  next();
+};
+
+module.exports.validateRamen = async function (req, res, next) {
+  const { error } = validateRamenSchema.validate(req.body, {
+    allowUnknown: true,
+  });
+  if (error) {
+    if (error.details) {
+      const msg = error.details.map((el) => el.message).join(',');
+      // standard Joi error msg.
+      throw new ExpressError(msg, 400);
+    } else {
+      // custom message.
+      throw new ExpressError(error, 400);
+    }
+  }
+  next();
+};
+
+module.exports.validateReview = async function (req, res, next) {
+  const { error } = validateReviewSchema.validate(req.body, {
+    allowUnknown: true,
+  });
+  if (error) {
+    if (error.details) {
+      const msg = error.details.map((el) => el.message).join(',');
+      // standard Joi error msg.
+      throw new ExpressError(msg, 400);
+    } else {
+      // custom message.
+      throw new ExpressError(error, 400);
+    }
   }
   next();
 };

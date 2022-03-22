@@ -1,12 +1,18 @@
 const express = require('express');
-const { isLoggedIn, isReviewAuthor } = require('../middleware');
+const { isLoggedIn, isReviewAuthor, validateReview } = require('../middleware');
 
 // Inorder to access ramen ID from original URL
 const router = express.Router({ mergeParams: true });
 const reviewController = require('../controllers/reviews');
 const catchAsync = require('../utils/catchAsync');
 
-router.route('/').post(isLoggedIn, catchAsync(reviewController.postNewReview));
+router
+  .route('/')
+  .post(
+    isLoggedIn,
+    catchAsync(validateReview),
+    catchAsync(reviewController.postNewReview)
+  );
 
 router
   .route('/:reviewId')

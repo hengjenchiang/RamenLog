@@ -1,30 +1,36 @@
 <%- layout('layout/boilerplate') %>
-<section class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-2"></div>
-      <div class="column">
-        <!-- FIXME: 開發中顯示訊息 prd要在更改為中文 使用process.env.NODE_ENV 參數-->
-        <% if(process.env.NODE_ENV !== 'production' ){ %>
-        <div class="notification is-danger">
-          <%= err.message %> <%= err.statusCode %>
-          <br />
-          <%= err.stack %>
-        </div>
-        <% } else if(err.statusCode === 404){ %>
-        <div class="notification is-danger">
-          <%= err.message %> <%= err.statusCode %>
-          <p>找不到此網址404</p>
-        </div>
-        <% } else{ %>
-        <div class="notification is-danger">
-          <button class="delete"></button>
-          <p>OOPS! 有什麼地方出錯了，請回前一頁</p>
-          <!-- FIXME: 上一頁按鈕 -->
-        </div>
-        <% } %>
-      </div>
-      <div class="column is-2"></div>
+
+<div class="columns">
+  <div class="column is-2"></div>
+  <div class="column">
+    <% if(process.env.NODE_ENV !== 'production' ){ %>
+    <div class="notification is-danger">
+      <%= err.message %> <%= err.statusCode %>
+      <br />
+      <%= err.stack %>
+      <button class="button lastPageButton is-large is-info is-centered">
+        上一頁
+      </button>
     </div>
+    <% } else if(err.statusCode === 404){ %>
+    <div class="notification theme-color">
+      <p class="is-1 center-text">OOPS! 找不到此網址</p>
+      <div class="buttons is-centered">
+        <button class="button lastPageButton is-large is-info is-centered">
+          上一頁
+        </button>
+      </div>
+    </div>
+    <% } else{ %>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <p>OOPS! 有什麼地方出錯了，請回前一頁</p>
+      <!-- 上一頁按鈕 -->
+      <button class="button lastPageButton is-large is-info is-centered">
+        上一頁
+      </button>
+    </div>
+    <% } %>
   </div>
-</section>
+  <div class="column is-2"></div>
+</div>

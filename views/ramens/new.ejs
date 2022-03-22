@@ -17,9 +17,10 @@
             <input
               type="text"
               placeholder="店家名稱"
-              name="title"
+              name="ramen[title]"
               id="title"
               class="input"
+              required
             />
             <span class="icon is-left">
               <i class="fas fa-utensils"></i>
@@ -33,9 +34,10 @@
             <input
               type="text"
               placeholder="拉麵店所在區域"
-              name="area"
+              name="ramen[area]"
               id="area"
               class="input"
+              required
             />
             <span class="icon is-left">
               <i class="mdi mdi-map"></i>
@@ -50,9 +52,10 @@
           <input
             type="text"
             placeholder="拉麵名稱"
-            name="product"
+            name="ramen[product]"
             id="product"
             class="input"
+            required
           />
           <span class="icon is-left">
             <i class="mdi mdi-noodles"></i>
@@ -66,9 +69,10 @@
           <input
             type="number"
             placeholder="價格"
-            name="price"
+            name="ramen[price]"
             id="price"
             class="input"
+            required
           />
           <span class="icon is-left">
             <i class="fas fa-dollar-sign"></i>
@@ -103,12 +107,13 @@
           <input
             class="form-range"
             type="range"
-            name="rating"
+            name="ramen[rating]"
             id="rating"
             min="1"
             max="10"
             step="0.1"
             style="width: 100%"
+            required
           />
           <!-- <output class="bubble" style="background: red;color: white;padding: 4px 12px;position: absolute;border-radius: 4px;left: 50%;transform: translateX(-50%);"></output> -->
           <p class="text my-2" id="showRatingValue">5.5</p>
@@ -120,10 +125,11 @@
         <div class="control">
           <textarea
             class="textarea"
-            name="thoughts"
+            name="ramen[thoughts]"
             id="thoughts"
             cols="30"
             rows="10"
+            required
           >
 心得/評價：</textarea
           >

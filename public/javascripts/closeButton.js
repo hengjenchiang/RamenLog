@@ -20,7 +20,7 @@ if (inputFile) {
 // 清空上傳圖片
 const resetFileButton = document.querySelector('.reset-file');
 if (resetFileButton) {
-  resetFileButton.addEventListener('click', (e) => {
+  resetFileButton.addEventListener('click', () => {
     inputFile.value = '';
     fileNameSpan.innerHTML = '';
   });
@@ -49,9 +49,33 @@ deletes.forEach((d) => {
 });
 
 // spinner
-const newFormBtn = document.querySelector('.new-form button.is-warning');
-if (newFormBtn) {
-  newFormBtn.addEventListener('click', () => {
-    newFormBtn.classList.toggle('is-loading');
+// const newFormBtn = document.querySelector('.new-form button.is-warning');
+// if (newFormBtn) {
+//   newFormBtn.addEventListener('click', () => {
+//     newFormBtn.classList.toggle('is-loading');
+//   });
+// }
+
+// carousel
+bulmaCarousel.attach('#carousel-demo', {
+  slidesToScroll: 1,
+  slidesToShow: 1,
+  loop: true,
+});
+
+const num = document.querySelector('.slider-container');
+if (num && num.childElementCount === 1) {
+  const nodeList = document.querySelectorAll('[class^=slider-navigation]');
+  nodeList.forEach((node) => {
+    node.style.display = 'none';
+  });
+}
+
+// last page button
+const lastPageButton = document.querySelector('.lastPageButton');
+if (lastPageButton) {
+  const historyObj = window.history;
+  lastPageButton.addEventListener('click', () => {
+    historyObj.back();
   });
 }

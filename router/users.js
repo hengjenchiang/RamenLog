@@ -28,3 +28,14 @@ router
 router.route('/logout').get(isLoggedIn, userController.logoutUser);
 
 module.exports = router;
+
+/**---------------------------------------------------------
+ * User - CRUD
+ *
+ * Register form: GET /register
+ * Register : POST /register
+ * Login form : GET /login
+ * Login : POST /login
+ * Logout : POST /logout
+ */
+//----------------------------------------------------------

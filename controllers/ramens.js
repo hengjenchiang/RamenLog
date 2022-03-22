@@ -39,7 +39,7 @@ module.exports.getRamenDetail = async (req, res, next) => {
 // @route   POST /ramens
 // @access  Auth Check
 module.exports.postNewRamen = async (req, res, next) => {
-  const ramen = new Ramen(req.body);
+  const ramen = new Ramen({ ...req.body.ramen });
   ramen.author = req.user._id;
 
   // ramen.images.push({url: req.body.imageURL, filename: 'testFile'});

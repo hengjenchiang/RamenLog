@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const ramenController = require('../controllers/ramens');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, isPostAuthor } = require('../middleware');
+const { isLoggedIn, isPostAuthor, validateRamen } = require('../middleware');
 const { cloudinaryStorage } = require('../cloudinary/index');
 
 const router = express.Router();
@@ -14,6 +14,7 @@ router
   .post(
     isLoggedIn,
     upload.array('images'),
+    catchAsync(validateRamen),
     catchAsync(ramenController.postNewRamen)
   );
 

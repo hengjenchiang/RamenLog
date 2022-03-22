@@ -5,27 +5,32 @@
     <div class="container">
         <div class="columns">
             <!-- leftside : ramen info -->
-            <div class="column">
+            <div class="column is-6">
                 <div class="card">
+                    <!-- carousel -->
                     <div class="card-image">
-                        <figure class="image">
-                            <!-- <% if( ramen.images.length > 0) {%> -->
-                                <img src="<%= ramen.images[0].url%>" alt="">
-                            <!-- <% } %>   -->
-                        </figure>
+                            <div id='carousel-demo'class='carousel'>
+                                <% for(let i = 0; i < ramen.images.length; i++){ %> 
+                                <figure class='carousel-item' >
+                                <img class="image" src="<%= ramen.images[i].url%>"  alt="" />
+                                </figure>
+                                <% } %> 
+                            </div>
                     </div>
+                    <!-- carousel-end -->
                     <div class="card-content">
                         <p class="title is-5"><%= ramen.title %></p>
-                        <p class="subtitle"><%= ramen.product %></p>
+                        <p class="subtitle" style="display: flex"><%= ramen.product %> <span style="flex: 1; text-align: right; white-space: nowrap;">評分: <span class= <%= (ramen.rating >= 8.0) ? "rating-color" : ""%>><%= ramen.rating %></span></span></p>
                         <p class="notification"><%= ramen.thoughts %></p>
                         <p class="has-text-right">
-                            <span class="icon-text">
+                            <span class="icon-text" >
                                 <span class="icon">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                <span><%= ramen.author.username %></span>
+                                <strong><%= ramen.author.nickname %>  </strong><small><i>&nbsp;@<%= ramen.author.username %></i></small>
                             </span>
                         </p>
+                        <p class="has-text-right"><small><%= format(ramen.date, ('yyyy-MMM-dd')) %></small></p>
                     </div>
                     <div class="card-content">
                         <% if(currentUser && ramen.author._id.equals(currentUser._id)){ %> 
@@ -40,7 +45,7 @@
             <!-- leftside : ramen info -->
         
             <!-- rightside : review -->
-            <div class="column">
+            <div class="column is-6">
                 <div class="columns is-multiline">
                     <% if(!currentUser){ %>
                         <div class="column is-full">
@@ -54,13 +59,13 @@
                             <div class="field">
                                 <label class="label is-4" for="reviews">留個評論吧！</label>
                                 <div class="control">
-                                    <textarea class="textarea is-grey-light" placeholder="您的評論..." name="body" id="reviews"></textarea>
+                                    <textarea class="textarea is-grey-light" placeholder="您的評論..." name="review[body]" id="reviews" required></textarea>
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="rating" class="label">評價</label>
                                 <div class="control">
-                                    <input class="form-range " type="range" name="rating" id="rating" min='1' max="10" step="0.1" style="width: 100%; ">
+                                    <input class="form-range " type="range" name="review[rating]" id="rating" min='1' max="10" step="0.1" style="width: 100%; ">
                                 </div>                                
                             </div>
                             <div class="field is-grouped">
@@ -68,8 +73,7 @@
                                     <button class="button is-link">送出</button>
                                 </div>
                                 <div class="control">
-                                    <input type="reset" class="button is-link is-light" value="重置"></input>
-                                    <!-- FIXME:  檢查需要review有內容才能post-->
+                                    <input type="reset" class="button is-link is-light" value="清空"></input>
                                 </div>
                             </div>
                         </form>
@@ -78,14 +82,14 @@
                     <!-- ejs loop for all reviews -->
                     <% for(let review of ramen.reviews.reverse()){ %>
                     <div class="column is-full">
-                        <div class="card review-card">
+                        <div class="card has-roundBorder">
                             <article class="media">
-                                <figure class="media-left comment-figure">
+                                <figure class="media-left comment-figure ">
                                     <p class="image is-1by1">
                                         <% if(review.author.profilePic.url){ %>
-                                            <img src="<%= review.author.profilePic.url %>" alt="" >
+                                            <img src="<%= review.author.profilePic.url %>" alt="" class="has-roundBorder">
                                         <% } else{ %>
-                                            <img src="/img/profile.jpg" alt="default">  
+                                            <img src="/img/profile.jpg" alt="default" class="has-roundBorder">  
                                         <% } %> 
                                     </p>
                                 </figure>
@@ -101,18 +105,7 @@
                                         <% } %>
                                         <p class="notification" style="margin-right: 1rem;"><%= review.body %></p>
                                     </div>
-                                    <nav class="level" style="margin-bottom:1rem;margin-right: 1rem;">
-                                        <div class="level-left">
-                                            <a class="level-item">
-                                                <span class="icon is-small"><i class="fas fa-reply"></i></span>
-                                            </a>
-                                            <a class="level-item">
-                                                <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-                                            </a>
-                                            <a class="level-item">
-                                                <span class="icon is-small"><i class="fas fa-heart"></i></span>
-                                            </a>
-                                        </div>
+                                    <nav class="level" style="margin-bottom:1rem;margin-right: 1rem;">                                
                                         <% if(currentUser && review.author.equals(currentUser._id)){ %> 
                                         <form action="/ramens/<%= ramen._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                                             <button class="button is-danger is-outlined is-small">
