@@ -1,10 +1,21 @@
-<nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
+<nav
+  class="navbar is-light is-fixed-top"
+  role="navigation"
+  aria-label="main navigation"
+>
   <div class="navbar-brand">
-    <a class="navbar-item" href="/ramens"><!-- FIXME: 改成homepage-->
-      <img src="/img/nav-logo.png" alt="ramen-logo" class="image is16-16">
+    <a class="navbar-item" href="/ramens"
+      ><!-- FIXME: 改成homepage-->
+      <img src="/img/nav-logo.png" alt="ramen-logo" class="image is16-16" />
     </a>
     <!-- 漢堡圖示 -->
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu" > 
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarMenu"
+    >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -13,35 +24,30 @@
 
   <div id="navbarMenu" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/ramens">
-        首頁
-      </a>
-      <a class="navbar-item" href="/ramens">
-        拉麵圖鑑
-      </a>
-    <a class="navbar-item" href="/ramens/new"> 
-        新增拉麵地圖
-    </a>
+      <a class="navbar-item" href="/ramens"> ラーメンログ </a>
+      <a class="navbar-item" href="/ramens"> 拉麵圖鑑 </a>
+      <a class="navbar-item" href="/ramens/new"> 新增拉麵地圖 </a>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          更多資訊
-        </a>
+        <a class="navbar-link"> 更多資訊 </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://www.facebook.com/groups/RamenTW/">
-            <img src="/img/logo-facebook.svg" alt="facebook" class="image mr-2 pl-0 ml-0">
+          <a
+            class="navbar-item"
+            href="https://www.facebook.com/groups/RamenTW/"
+          >
+            <img
+              src="/img/logo-facebook.svg"
+              alt="facebook"
+              class="image mr-2 pl-0 ml-0"
+            />
             臉書愛好會
           </a>
           <a class="navbar-item" href="https://bit.ly/TWRamenClubMAP">
             拉麵地圖
           </a>
-          <a class="navbar-item">
-            2021拉麵大賞
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
+          <a class="navbar-item"> 2021拉麵大賞 </a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item"> Report an issue </a>
         </div>
       </div>
     </div>
@@ -49,21 +55,16 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <% if(!currentUser){ %> 
-            <a class="button is-primary" href="/register">
-              <strong>註冊</strong>
-            </a>
-            <a class="button is-light" href="/login">
-              登入
-            </a>
-          <% } else {%> 
-            <a class="button is-info is-light" href="/logout">
-              登出
-            </a>
-          <% } %>  
+          <% if(!currentUser){ %>
+          <a class="button is-info is-light" href="/register">
+            <strong>註冊</strong>
+          </a>
+          <a class="button is-light" href="/login"> 登入 </a>
+          <% } else {%>
+          <a class="button is-info is-light" href="/logout"> 登出 </a>
+          <% } %>
         </div>
       </div>
     </div>
   </div>
 </nav>
-

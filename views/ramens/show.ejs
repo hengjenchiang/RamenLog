@@ -20,7 +20,7 @@
                     <!-- carousel-end -->
                     <div class="card-content">
                         <p class="title is-5"><%= ramen.title %></p>
-                        <p class="subtitle" style="display: flex"><%= ramen.product %> <span style="flex: 1; text-align: right; white-space: nowrap;">評分: <span class= <%= (ramen.rating >= 8.0) ? "rating-color" : ""%>><%= ramen.rating %></span></span></p>
+                        <p class="subtitle" ><%= ramen.product %> <span >評分: <span class= <%= (ramen.rating >= 8.0) ? "good-rating-color" : ""%>><%= ramen.rating %></span></span></p>
                         <p class="notification"><%= ramen.thoughts %></p>
                         <p class="has-text-right">
                             <span class="icon-text" >
@@ -116,8 +116,7 @@
                                             </button>
                                         </form>
                                         <% } %> 
-                                    </nav>
-                                    
+                                    </nav>                                    
                                 </div>
                             </article>
                         </div>
