@@ -132,7 +132,7 @@
             value="<%= ramen.rating %>"
           />
           <!-- <output class="bubble" style="background: red;color: white;padding: 4px 12px;position: absolute;border-radius: 4px;left: 50%;transform: translateX(-50%);"></output> -->
-          <p class="text my-2" id="showRatingValue"><%= ramen.rating %></p>
+          <p class="is-size-5" id="showRatingValue"><%= ramen.rating %></p>
         </dic>
       </div>
 
@@ -141,6 +141,7 @@
         <div class="control">
           <textarea
             class="textarea"
+            s
             name="thoughts"
             id="thoughts"
             cols="30"
@@ -160,24 +161,3 @@
     </form>
   </div>
 </section>
-
-<script>
-  let ratingValue = document.querySelector('#rating');
-  // let bubble = document.querySelector('.bubble');
-  ratingValue.addEventListener('input', () => {
-    // setBubble(ratingValue, bubble);
-    const ratingText = document.querySelector('#showRatingValue');
-    ratingText.innerHTML = ratingValue.value;
-  });
-
-  // function setBubble(range, bubble) {
-  //         const val = range.value;
-  //         const min = range.min ? range.min : 0;
-  //         const max = range.max ? range.max : 100;
-  //         const newVal = Number(((val - min) * 100) / (max - min));
-  //         bubble.innerHTML = val;
-
-  //         // Sorta magic numbers based on size of the native UI thumb
-  //         bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-  //     }
-</script>

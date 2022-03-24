@@ -3,6 +3,7 @@ const Review = require('./models/review');
 const {
   validateRamenSchema,
   validateReviewSchema,
+  validateUserSchema,
 } = require('./validateSchema');
 const ExpressError = require('./utils/ExpressError');
 
@@ -54,6 +55,23 @@ module.exports.validateRamen = async function (req, res, next) {
 
 module.exports.validateReview = async function (req, res, next) {
   const { error } = validateReviewSchema.validate(req.body, {
+    allowUnknown: true,
+  });
+  if (error) {
+    if (error.details) {
+      const msg = error.details.map((el) => el.message).join(',');
+      // standard Joi error msg.
+      throw new ExpressError(msg, 400);
+    } else {
+      // custom message.
+      throw new ExpressError(error, 400);
+    }
+  }
+  next();
+};
+
+module.exports.validateUser = async function (req, res, next) {
+  const { error } = validateUserSchema.validate(req.body, {
     allowUnknown: true,
   });
   if (error) {

@@ -79,3 +79,16 @@ if (lastPageButton) {
     historyObj.back();
   });
 }
+
+const ratingValue = document.querySelector('#rating');
+// let bubble = document.querySelector('.bubble');
+ratingValue.addEventListener('input', () => {
+  // setBubble(ratingValue, bubble);
+  const ratingText = document.querySelector('#showRatingValue');
+  ratingText.innerHTML = ratingValue.value;
+  if (ratingValue.value >= 8.0) {
+    ratingText.classList.add('good-rating-color');
+  } else {
+    ratingText.classList.remove('good-rating-color');
+  }
+});

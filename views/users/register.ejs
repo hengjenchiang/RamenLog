@@ -2,16 +2,17 @@
 
 <section class="section">
   <div class="container">
+    <h1 class="title center-text">註冊拉麵log</h1>
     <div class="columns is-multiline">
       <div class="column is-one-third"></div>
-      <div class="column is-one-third register-form round-border">
+      <div class="column is-one-third user-form round-border">
         <form
           action="/register"
           method="POST"
           class="form"
           enctype="multipart/form-data"
+          novalidate
         >
-          <h1 class="title center-text">註冊拉麵log</h1>
           <div class="field">
             <label for="new-username" class="label">帳號</label>
             <div class="control">
@@ -26,8 +27,6 @@
                 autocomplete="off"
               />
             </div>
-            <!-- autofilling acct. & pwd still a problem -->
-            <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#preventing_autofilling_with_autocompletenew-password -->
           </div>
 
           <div class="field">

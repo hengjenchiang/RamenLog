@@ -37,3 +37,36 @@ module.exports.validateReviewSchema = Joi.object({
     }),
   }).required(),
 });
+
+module.exports.validateUserSchema = Joi.object({
+  user: Joi.object({
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: { allow: false },
+      })
+      .required()
+      .messages({
+        'string.empty': '一定要有email！',
+        'string.email': 'email不符合格式！',
+        'any.required': '一定要有email！',
+      }),
+    nickname: Joi.string().required().messages({
+      'string.empty': '暱稱不能空白！',
+      'any.required': '暱稱不能空白！',
+    }),
+    username: Joi.string().required().messages({
+      'string.empty': '請輸入帳號！',
+      'any.required': '請輸入帳號',
+    }),
+    password: Joi.string()
+      .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+      .required()
+      .messages({
+        'string.empty': '密碼不能空白！',
+        'string.pattern.base':
+          '密碼不符合格式！（大小寫英文數字混合，3 ~ 30 個字）',
+        'any.required': '密碼不能空白！',
+      }),
+  }).required(),
+});

@@ -24,7 +24,11 @@
     <% } else{ %>
     <div class="notification is-danger">
       <button class="delete"></button>
+      <% if(err.message){ %>
+      <p class="is-size-4"><%= err.message %></p>
+      <% } else { %>
       <p>OOPS! 有什麼地方出錯了，請回前一頁</p>
+      <% } %>
       <!-- 上一頁按鈕 -->
       <button class="button lastPageButton is-large is-info is-centered">
         上一頁

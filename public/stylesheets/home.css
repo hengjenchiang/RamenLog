@@ -43,8 +43,8 @@ a {
   width: 100px;
 }
 
-div.register-form {
-  background-color: rgba(20, 10, 10, 0.15);
+div.user-form {
+  background-color: rgba(20, 10, 10, 0.1);
 }
 
 .round-border {

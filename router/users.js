@@ -4,7 +4,7 @@ const passport = require('passport');
 const userController = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
 const { cloudinaryStorage } = require('../cloudinary/index');
-const { isLoggedIn } = require('../middleware');
+const { isLoggedIn, validateUser } = require('../middleware');
 
 const upload = multer({ storage: cloudinaryStorage });
 const router = express.Router();
@@ -12,7 +12,11 @@ const router = express.Router();
 router
   .route('/register')
   .get(userController.getRegisterForm)
-  .post(upload.single('profilePic'), catchAsync(userController.postNewUser));
+  .post(
+    upload.single('profilePic'),
+    catchAsync(validateUser),
+    catchAsync(userController.postNewUser)
+  );
 
 router
   .route('/login')
