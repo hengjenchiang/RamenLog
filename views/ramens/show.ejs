@@ -34,9 +34,9 @@
                     </div>
                     <div class="card-content">
                         <% if(currentUser && ramen.author._id.equals(currentUser._id)){ %> 
-                            <a href="/ramens/<%= ramen._id%>/edit" class="button is-info ">編輯</a>
+                            <a href="/ramens/<%= ramen._id%>/edit" class="button is-info is-light ">編輯</a>
                             <form action="/ramens/<%= ramen._id %>/?_method=DELETE" method="POST" class="is-inline">
-                                <button class="button is-danger">刪除</button>
+                                <button class="button is-danger is-light">刪除</button>
                             </form>
                         <% } %> 
                     </div>
@@ -108,7 +108,7 @@
                                     <nav class="level" style="margin-bottom:1rem;margin-right: 1rem;">                                
                                         <% if(currentUser && review.author.equals(currentUser._id)){ %> 
                                         <form action="/ramens/<%= ramen._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                            <button class="button is-danger is-outlined is-small">
+                                            <button class="button is-danger is-outlined is-small is-light">
                                                 <span>刪除</span>
                                                 <span class="icon is-small">
                                                     <i class="fas fa-times"></i>

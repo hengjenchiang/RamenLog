@@ -11,10 +11,11 @@
           method="POST"
           class="form"
           enctype="multipart/form-data"
-          novalidate
         >
           <div class="field">
-            <label for="new-username" class="label">帳號</label>
+            <label for="new-username" class="label"
+              >帳號<span class="required-field">*</span></label
+            >
             <div class="control">
               <input
                 type="text"
@@ -30,7 +31,12 @@
           </div>
 
           <div class="field">
-            <label for="new-email" class="label">email</label>
+            <label for="new-email" class="label"
+              >email<span class="required-field">*</span
+              ><span class="required-field is-size-7"
+                ><sup>不能重複</sup></span
+              ></label
+            >
             <div class="control">
               <input
                 type="email"
@@ -44,7 +50,9 @@
           </div>
 
           <div class="field">
-            <label for="new-nickname" class="label">暱稱</label>
+            <label for="new-nickname" class="label"
+              >暱稱<span class="required-field">*</span></label
+            >
             <div class="control">
               <input
                 type="text"
@@ -84,7 +92,9 @@
           </div>
 
           <div class="field">
-            <label for="new-password" class="label">密碼</label>
+            <label for="new-password" class="label"
+              >密碼<span class="required-field">*</span></label
+            >
             <div class="control">
               <input
                 type="password"

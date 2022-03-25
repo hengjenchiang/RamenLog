@@ -71,3 +71,7 @@ div.user-form {
   display: flex;
   justify-content: space-between;
 }
+
+span.required-field {
+  color: #f32;
+}

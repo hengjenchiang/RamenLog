@@ -8,10 +8,12 @@
       class="form column is-6 is-offset-3 box"
       method="POST"
     >
-      <h1 class="title">新增拉麵地圖</h1>
+      <h1 class="title">修改拉麵地圖</h1>
       <div class="field-group">
         <div class="field is-inline-block" style="width: 60%">
-          <label class="label" for="title">店家名稱</label>
+          <label class="label" for="title"
+            >店家名稱<span class="required-field">*</span></label
+          >
           <div class="control has-icons-left">
             <input
               type="text"
@@ -20,6 +22,7 @@
               id="title"
               class="input"
               value="<%= ramen.title %>"
+              required
             />
             <span class="icon is-left">
               <i class="fas fa-utensils"></i>
@@ -28,7 +31,9 @@
         </div>
         <div class="field is-inline-block" style="width: 8.5%"></div>
         <div class="field is-inline-block" style="width: 30%">
-          <label class="label" for="area">區域 / 鄰近地標</label>
+          <label class="label" for="area"
+            >區域 / 鄰近地標<span class="required-field">*</span></label
+          >
           <div class="control has-icons-left">
             <input
               type="text"
@@ -37,6 +42,7 @@
               id="area"
               class="input"
               value="<%= ramen.area %>"
+              required
             />
             <span class="icon is-left">
               <i class="mdi mdi-map"></i>
@@ -46,7 +52,9 @@
       </div>
 
       <div class="field">
-        <label class="label" for="product">拉麵名稱</label>
+        <label class="label" for="product"
+          >拉麵名稱<span class="required-field">*</span></label
+        >
         <div class="control has-icons-left">
           <input
             type="text"
@@ -55,6 +63,7 @@
             id="product"
             class="input"
             value="<%= ramen.product %>"
+            required
           />
           <span class="icon is-left">
             <i class="mdi mdi-noodles"></i>
@@ -63,7 +72,9 @@
       </div>
 
       <div class="field">
-        <label class="label" for="price">價格</label>
+        <label class="label" for="price"
+          >價格<span class="required-field">*</span></label
+        >
         <div class="control has-icons-left">
           <input
             type="number"
@@ -72,6 +83,7 @@
             id="price"
             class="input"
             value="<%= ramen.price %>"
+            required
           />
           <span class="icon is-left">
             <i class="fas fa-dollar-sign"></i>
@@ -130,6 +142,7 @@
             step="0.1"
             style="width: 100%"
             value="<%= ramen.rating %>"
+            required
           />
           <!-- <output class="bubble" style="background: red;color: white;padding: 4px 12px;position: absolute;border-radius: 4px;left: 50%;transform: translateX(-50%);"></output> -->
           <p class="is-size-5" id="showRatingValue"><%= ramen.rating %></p>
@@ -137,7 +150,9 @@
       </div>
 
       <div class="field">
-        <label class="label" for="thoughts">食記心得</label>
+        <label class="label" for="thoughts"
+          >食記心得<span class="required-field">*</span></label
+        >
         <div class="control">
           <textarea
             class="textarea"
@@ -146,6 +161,7 @@
             id="thoughts"
             cols="30"
             rows="10"
+            required
           >
 <%= ramen.thoughts %></textarea
           >
@@ -154,7 +170,7 @@
 
       <div class="field is-grouped is-grouped-centered">
         <p class="control">
-          <button class="button is-danger">更新</button>
+          <button class="button is-danger is-light">更新</button>
           <a href="/ramens/<%= ramen._id %> " class="button is-light">取消</a>
         </p>
       </div>

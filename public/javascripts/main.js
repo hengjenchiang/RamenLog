@@ -48,14 +48,6 @@ deletes.forEach((d) => {
   });
 });
 
-// spinner
-// const newFormBtn = document.querySelector('.new-form button.is-warning');
-// if (newFormBtn) {
-//   newFormBtn.addEventListener('click', () => {
-//     newFormBtn.classList.toggle('is-loading');
-//   });
-// }
-
 // carousel
 bulmaCarousel.attach('#carousel-demo', {
   slidesToScroll: 1,
@@ -63,6 +55,7 @@ bulmaCarousel.attach('#carousel-demo', {
   loop: true,
 });
 
+// carousel with only one pic.
 const num = document.querySelector('.slider-container');
 if (num && num.childElementCount === 1) {
   const nodeList = document.querySelectorAll('[class^=slider-navigation]');
@@ -80,15 +73,18 @@ if (lastPageButton) {
   });
 }
 
-const ratingValue = document.querySelector('#rating');
-// let bubble = document.querySelector('.bubble');
-ratingValue.addEventListener('input', () => {
-  // setBubble(ratingValue, bubble);
-  const ratingText = document.querySelector('#showRatingValue');
-  ratingText.innerHTML = ratingValue.value;
-  if (ratingValue.value >= 8.0) {
-    ratingText.classList.add('good-rating-color');
-  } else {
-    ratingText.classList.remove('good-rating-color');
-  }
-});
+// Changing ramen rating color.
+const ratingValueNode = document.querySelector('#rating');
+const ratingTextNode = document.querySelector('#showRatingValue');
+if (ratingValueNode) {
+  ratingValueNode.addEventListener('input', () => {
+    if (ratingTextNode) {
+      ratingTextNode.innerHTML = ratingValueNode.value;
+      if (ratingValueNode && ratingValueNode.value >= 8.0) {
+        ratingTextNode.classList.add('good-rating-color');
+      } else {
+        ratingTextNode.classList.remove('good-rating-color');
+      }
+    }
+  });
+}
