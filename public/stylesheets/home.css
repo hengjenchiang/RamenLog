@@ -75,3 +75,10 @@ div.user-form {
 span.required-field {
   color: #f32;
 }
+
+footer {
+  height: 56px;
+}
+.spacing-block {
+  margin-bottom: 10rem;
+}
