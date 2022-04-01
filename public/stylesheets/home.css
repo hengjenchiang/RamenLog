@@ -2,7 +2,7 @@
     background-color: #000;
 } */
 
-body {
+body.boilerplate {
   background-image: url('../img/bgwall.jpg'); /* Unsplash: https://unsplash.com/photos/Nm6ojlDO-5c */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,6 +37,13 @@ a {
     #fcf9f0,
     #fbdfd6
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.navbar-menu.is-active {
+  background: rgba(256, 256, 256, 0.5);
+}
+.homepage .navbar {
+  background: rgba(00, 00, 00, 0);
 }
 
 .comment-figure {
@@ -78,7 +85,79 @@ span.required-field {
 
 footer {
   height: 56px;
+  background-color: #212529;
+  color: #fefefe;
 }
+
+footer .columns {
+  height: 100%;
+}
+
+footer .copyright {
+  font-size: 0.4rem;
+  color: #777;
+}
+
 .spacing-block {
   margin-bottom: 10rem;
+}
+
+section.hero {
+  background: linear-gradient(
+    90deg,
+    rgba(234, 160, 90, 1) 51%,
+    rgba(235, 220, 70, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(234, 160, 90, 1) 51%,
+    rgba(235, 220, 70, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(234, 160, 90, 1) 51%,
+    rgba(235, 220, 70, 1) 100%
+  );
+  background: -o-linear-gradient(
+    90deg,
+    rgba(234, 160, 90, 1) 51%,
+    rgba(235, 220, 70, 1) 100%
+  );
+}
+
+section.hero .hero-bg {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/hero.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: top right;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1140px;
+  max-height: 400px;
+}
+
+@media (max-width: 768px) {
+  section.hero .hero-bg {
+    background-size: 180px;
+  }
+}
+
+.hero-content {
+  font-size: 50px;
+  font-weight: 900;
+  color: #fefefe;
+}
+.intro .intro-icon {
+  width: 100%;
+  height: 64px;
+  background-image: url(../img/favicon.ico);
+  background-size: 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }

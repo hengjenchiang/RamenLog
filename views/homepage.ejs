@@ -1,5 +1,73 @@
-<% layout('layout/boilerplate')%>
-<h1>This is home</h1>
-<% for(let i = 0; i < 5; i++){ %> 
-    <h3>test for ejs "<%= i %>"</h3>
-<% } %> 
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <link rel="icon" href="img/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="拉麵, ramen, ramenlog, 拉麵圖鑑" />
+    <meta name="description" content="一個紀錄討論交流台灣拉麵的小地方" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>RamenLog</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <!-- normalize.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- bulma.io-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
+    />
+    <!-- bulma-carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css"
+    />
+    <!-- material design icon-->
+    <link rel="stylesheet" href="/stylesheets/css/starability-checkmark.css" />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+
+    <script
+      src="https://kit.fontawesome.com/b99966344c.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- fontawesome5 -->
+  </head>
+
+  <body class="homepage">
+    <section class="hero is-large">
+      <%- include('partials/navbar')%>
+      <div class="hero-body">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <h1>
+            ラーメンログ
+            <br />
+            紀錄交流台灣拉麵的小空間
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section class="container intro">
+      <div class="columns">
+        <div class="column is-8 is-offset-2 my-5">
+          <div class="intro-icon"></div>
+          <p class="is-size-5 has-text-centered">
+            RamenLog
+            <span class="has-text-weight-medium">ラーメンログ</span>
+            是一個聚集所有拉麵愛好者分享交流拉麵的平台。提供會員制刊登食麵心得，分享給舊雨新知，不管是吃麵數年的重度成癮者、抑或是沒有吃過拉麵的普羅百姓，這邊都非常歡迎您的加入，讓大眾都能踏入這個美好的拉麵領域！
+          </p>
+        </div>
+      </div>
+    </section>
+    <%- include('partials/footer')%>
+    <!-- footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+    <script src="/javascripts/main.js"></script>
+  </body>
+</html>

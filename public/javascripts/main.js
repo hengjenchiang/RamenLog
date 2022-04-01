@@ -1,7 +1,7 @@
-const btn = document.querySelector('button.delete');
-if (btn) {
+const deleteBtn = document.querySelector('button.delete');
+if (deleteBtn) {
   const message = document.querySelector('div.message');
-  btn.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', () => {
     message.style.display = 'none';
   });
 }
@@ -28,7 +28,7 @@ if (resetFileButton) {
 
 // navbar hamberger
 const navbarBurgers = document.querySelectorAll('.navbar-burger');
-if (navbarBurgers.length > 0) {
+if (navbarBurgers && navbarBurgers.length > 0) {
   navbarBurgers.forEach((el) => {
     el.addEventListener('click', () => {
       const { target } = el.dataset;
