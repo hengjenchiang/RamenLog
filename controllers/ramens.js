@@ -59,11 +59,20 @@ module.exports.getUpdateRamenForm = async (req, res, next) => {
 
 module.exports.updateRamen = async (req, res, next) => {
   const { id } = req.params;
-  const update = req.body;
-
+  const update = req.body.ramen;
+  const ramen = await Ramen.findById(id);
+  ramen.images.push(
+    ...req.files.map((f) => ({ url: f.path, filename: f.filename }))
+  );
+  update.images = ramen.images;
+  await ramen.updateOne(update);
+  // await ramen.save();
   // FIXME: delete images
   // https://mongoosejs.com/docs/documents.html#updating-using-save 建議使用save()更新，因為其他不會觸發完整的middleware //改用findByIdAndUpdate 原本用findOneAndUpdate會更新錯誤
-  await Ramen.findByIdAndUpdate(id, update, { new: true });
+  // await Ramen.findByIdAndUpdate(id, update, { new: true });
+
+  // ramen.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+
   req.flash('success', '更新成功！');
   res.redirect(`/ramens/${id}`);
 };

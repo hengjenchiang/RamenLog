@@ -5,8 +5,9 @@
   <div class="columns">
     <form
       action="/ramens/<%= ramen._id %>?_method=PATCH"
-      class="form column is-6 is-offset-3 box"
+      class="form column is-8 is-offset-2 box"
       method="POST"
+      enctype="multipart/form-data"
     >
       <h1 class="title">修改拉麵地圖</h1>
       <div class="field-group">
@@ -18,7 +19,7 @@
             <input
               type="text"
               placeholder="店家名稱"
-              name="title"
+              name="ramen[title]"
               id="title"
               class="input"
               value="<%= ramen.title %>"
@@ -38,7 +39,7 @@
             <input
               type="text"
               placeholder="拉麵店所在區域"
-              name="area"
+              name="ramen[area]"
               id="area"
               class="input"
               value="<%= ramen.area %>"
@@ -59,7 +60,7 @@
           <input
             type="text"
             placeholder="拉麵名稱"
-            name="product"
+            name="ramen[product]"
             id="product"
             class="input"
             value="<%= ramen.product %>"
@@ -79,7 +80,7 @@
           <input
             type="number"
             placeholder="價格"
-            name="price"
+            name="ramen[price]"
             id="price"
             class="input"
             value="<%= ramen.price %>"
@@ -91,22 +92,30 @@
         </div>
       </div>
 
+      <!--圖片上傳 -->
       <div class="field">
-        <label class="label" for="imageURL">圖片上傳</label>
-        <div class="control has-icons-left">
-          <input
-            type="text"
-            placeholder="圖片連結"
-            name="imageURL"
-            id="imageURL"
-            class="input"
-          />
-          <span class="icon is-left">
-            <i class="far fa-images"></i>
-          </span>
+        <label class="label" for="images">圖片</label>
+        <div class="file has-name is-fullwidth is-right">
+          <label class="file-label">
+            <input class="file-input" type="file" name="images" multiple />
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label"> 選擇檔案… </span>
+            </span>
+            <span class="file-name" id="file-name"> </span>
+          </label>
         </div>
       </div>
+      <div class="field">
+        <button type="button" class="button is-danger reset-file">
+          重新選擇
+        </button>
+      </div>
+
       <!-- TODO: 顯示上傳照片 並新增刪除按鈕-->
+      <% if(ramen.images.length > 0){ %>
       <section class="section">
         <div class="container">
           <div class="field">
@@ -117,7 +126,6 @@
               </div>
               <div class="item-2">
                 <!-- Slide Content -->
-                <img src="<%= ramen.images[1].url%>" alt="" />
               </div>
               <div class="item-3">
                 <!-- Slide Content -->
@@ -126,6 +134,7 @@
           </div>
         </div>
       </section>
+      <% } %>
 
       <div class="field column"></div>
 
@@ -135,7 +144,7 @@
           <input
             class="form-range"
             type="range"
-            name="rating"
+            name="ramen[rating]"
             id="rating"
             min="1"
             max="10"
@@ -157,7 +166,7 @@
           <textarea
             class="textarea"
             s
-            name="thoughts"
+            name="ramen[thoughts]"
             id="thoughts"
             cols="30"
             rows="10"

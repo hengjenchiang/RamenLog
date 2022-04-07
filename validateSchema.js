@@ -23,7 +23,12 @@ module.exports.validateRamenSchema = Joi.object({
       'string.empty': `拉麵名稱為必填項目喔！`,
       'any.required': `拉麵名稱為必填項目喔！`,
     }),
-  }).required(),
+  })
+    .required()
+    .messages({
+      'string.empty': `沒有拉麵物件！！`,
+      'any.required': `沒有拉麵物件！！`,
+    }),
 });
 
 module.exports.validateReviewSchema = Joi.object({

@@ -23,7 +23,13 @@ router.route('/new').get(isLoggedIn, ramenController.getNewRamenForm);
 router
   .route('/:id')
   .get(catchAsync(ramenController.getRamenDetail))
-  .patch(isLoggedIn, isPostAuthor, catchAsync(ramenController.updateRamen))
+  .patch(
+    isLoggedIn,
+    isPostAuthor,
+    upload.array('images'),
+    catchAsync(validateRamen),
+    catchAsync(ramenController.updateRamen)
+  )
   .delete(isLoggedIn, isPostAuthor, catchAsync(ramenController.deleteRamen));
 
 router
