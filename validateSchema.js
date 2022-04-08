@@ -56,14 +56,24 @@ module.exports.validateUserSchema = Joi.object({
         'string.email': 'email不符合格式！',
         'any.required': '一定要有email！',
       }),
-    nickname: Joi.string().required().messages({
-      'string.empty': '暱稱不能空白！',
-      'any.required': '暱稱不能空白！',
-    }),
-    username: Joi.string().required().messages({
-      'string.empty': '請輸入帳號！',
-      'any.required': '請輸入帳號',
-    }),
+    nickname: Joi.string()
+      .trim()
+      .required()
+      .prefs({ convert: false })
+      .messages({
+        'string.trim': '暱稱不能包含空白！',
+        'string.empty': '暱稱不能空白！',
+        'any.required': '暱稱不能空白！',
+      }),
+    username: Joi.string()
+      .trim()
+      .required()
+      .prefs({ convert: false })
+      .messages({
+        'string.trim': '帳號不能包含空白！',
+        'string.empty': '請輸入帳號！',
+        'any.required': '請輸入帳號',
+      }),
     password: Joi.string()
       .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
       .required()

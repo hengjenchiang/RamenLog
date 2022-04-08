@@ -12,7 +12,11 @@ module.exports.postNewUser = async (req, res, next) => {
   else newUser.profilePic = { url: '/img/profile.jpg', filename: 'no-pick' };
   User.register(newUser, password, (err) => {
     if (err) {
-      console.log(err);
+      if (
+        err.message === 'A user with the given username is already registered'
+      ) {
+        err.message = '帳號已經存在囉！';
+      }
       req.flash('error', err.message);
       return res.redirect('/register');
     }
