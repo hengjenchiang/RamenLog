@@ -66,8 +66,16 @@ module.exports.updateRamen = async (req, res, next) => {
   );
   update.images = ramen.images;
   await ramen.updateOne(update);
+  if (req.body.deleteImages) {
+    for (const filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    await ramen.updateOne({
+      $pull: { images: { filename: { $in: req.body.deleteImages } } },
+    });
+  }
   // await ramen.save();
-  // FIXME: delete images
+
   // https://mongoosejs.com/docs/documents.html#updating-using-save 建議使用save()更新，因為其他不會觸發完整的middleware //改用findByIdAndUpdate 原本用findOneAndUpdate會更新錯誤
   // await Ramen.findByIdAndUpdate(id, update, { new: true });
 
@@ -81,7 +89,9 @@ module.exports.deleteRamen = async (req, res, next) => {
   const { id } = req.params;
   const ramen = await Ramen.findById(id);
   for (const file of ramen.images) {
-    await cloudinary.uploader.destroy(file.filename);
+    if (file && file.filename) {
+      await cloudinary.uploader.destroy(file.filename);
+    }
   }
 
   // triggers Mongo middleware a.k.a pre and post hooks => delete comments

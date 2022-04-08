@@ -114,27 +114,25 @@
         </button>
       </div>
 
-      <!-- TODO: 顯示上傳照片 並新增刪除按鈕-->
-      <% if(ramen.images.length > 0){ %>
+      <!--顯示上傳照片, 刪除按鈕-->
       <section class="section">
-        <div class="container">
-          <div class="field">
-            <div id="carousel-demo" class="carousel">
-              <div class="item-1">
-                <!-- Slide Content -->
-                <img src="<%= ramen.images[0].url%>" alt="" />
-              </div>
-              <div class="item-2">
-                <!-- Slide Content -->
-              </div>
-              <div class="item-3">
-                <!-- Slide Content -->
-              </div>
-            </div>
+        <div class="columns is-multiline">
+          <% ramen.images.forEach((img, i) => { %>
+          <div class="column is-6">
+            <img src="<%=img.url%>" alt="" class="image" />
+            <label class="checkbox" for="image-<%=i%>">
+              <input
+                type="checkbox"
+                name="deleteImages[]"
+                id="image-<%=i%>"
+                value="<%=img.filename%>"
+              />
+              刪除？
+            </label>
           </div>
+          <% }) %>
         </div>
       </section>
-      <% } %>
 
       <div class="field column"></div>
 
