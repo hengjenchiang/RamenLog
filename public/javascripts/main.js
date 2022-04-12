@@ -75,7 +75,7 @@ if (lastPageButton) {
 
 // Changing ramen rating color.
 const ratingValueNode = document.querySelector('#rating');
-const ratingTextNode = document.querySelector('#showRatingValue');
+const ratingTextNode = document.querySelector('.showRatingValue');
 if (ratingValueNode) {
   ratingValueNode.addEventListener('input', () => {
     if (ratingTextNode) {
