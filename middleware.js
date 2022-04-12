@@ -61,7 +61,11 @@ module.exports.validateReview = async function (req, res, next) {
     if (error.details) {
       const msg = error.details.map((el) => el.message).join(',');
       // standard Joi error msg.
-      throw new ExpressError(msg, 400);
+      console.log(req);
+      const index = req.originalUrl.indexOf('review');
+      const url = req.originalUrl.substring(0, index);
+      req.flash('error', msg);
+      return res.redirect(url);
     } else {
       // custom message.
       throw new ExpressError(error, 400);
@@ -77,10 +81,10 @@ module.exports.validateUser = async function (req, res, next) {
   if (error) {
     if (error.details) {
       const msg = error.details.map((el) => el.message).join(',');
-      // standard Joi error msg.
-      throw new ExpressError(msg, 400);
+      req.flash('error', msg);
+      return res.redirect('/register');
     } else {
-      // custom message.
+      // custom message
       throw new ExpressError(error, 400);
     }
   }
