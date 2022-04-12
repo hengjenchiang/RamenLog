@@ -29,7 +29,7 @@ router
     userController.loginUser
   );
 
-router.route('/logout').get(isLoggedIn, userController.logoutUser);
+router.route('/logout').get(userController.logoutUser);
 
 module.exports = router;
 

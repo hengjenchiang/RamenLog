@@ -1,6 +1,10 @@
 const User = require('../models/user');
 
 module.exports.getRegisterForm = async (req, res, next) => {
+  if (req.user) {
+    req.flash('error', '已經登入了！需要註冊新帳號請先登出！');
+    return res.redirect('/ramens');
+  }
   res.render('users/register');
 };
 
@@ -53,7 +57,12 @@ module.exports.loginUser = async (req, res, next) => {
 };
 
 module.exports.logoutUser = (req, res, next) => {
-  req.logout();
-  req.flash('success', '成功登出囉～');
-  res.redirect('/ramens');
+  if (req.user) {
+    req.logout();
+    req.flash('success', '成功登出囉～');
+    return res.redirect('/ramens');
+  } else {
+    req.flash('error', '目前沒有登入喔！');
+    res.redirect('/ramens');
+  }
 };
