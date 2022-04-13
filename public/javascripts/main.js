@@ -1,3 +1,4 @@
+// Flash delete button
 const deleteBtn = document.querySelector('button.delete');
 if (deleteBtn) {
   const message = document.querySelector('div.message');

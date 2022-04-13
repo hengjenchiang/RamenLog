@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
- * Declare Variable
+ * Variable declaration
  */
 const express = require('express');
 
@@ -23,7 +23,7 @@ const ExpressError = require('./utils/ExpressError'); // usage: new ExpressError
 
 const app = express();
 const port = process.env.PORT || 5000;
-const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/ramenlog';
+const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/ramenlog'; // Local storage in DEV
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
@@ -34,6 +34,9 @@ const User = require('./models/user');
 const Review = require('./models/review');
 //----------------------------------------------------------
 
+/**---------------------------------------------------------
+ * Express app configuration
+ */
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -42,17 +45,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    // FIXME:depends on the store DEPRECATED
     resave: false,
-    saveUninitialized: false, // DEPRECATED
-    secret: 'thisissessionscretindevmode',
+    saveUninitialized: false,
+    secret: process.env.SECRET || 'thisissessionscretindevmode',
     cookie: {
-      // secure: true, //FIXME: Production
+      secure: true,
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     },
   })
 );
 app.use(flash());
+//----------------------------------------------------------
 
 /**---------------------------------------------------------
  * Database - mongoDB connection
@@ -100,7 +103,7 @@ app.use((req, res, next) => {
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
- * Router config
+ * Router configuration
  */
 const ramenRouter = require('./router/ramens');
 const reviewRouter = require('./router/reviews');
@@ -112,20 +115,22 @@ app.use('/', userRouter);
 //----------------------------------------------------------
 
 /**
- * Home Page
+ * Landing page
  */
 app.get('/', (req, res) => {
   res.render('homepage');
 });
 
 /**
- * Error Handling e.g. 404
+ * Error Handling
  */
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
 
-/** Error middleware */
+/*
+ * Error middleware
+ */
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = '糟糕!好像哪裡出了問題';
