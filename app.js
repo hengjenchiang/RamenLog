@@ -19,12 +19,13 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const colors = require('colors');
+const MongoStore = require('connect-mongo');
 const ExpressError = require('./utils/ExpressError'); // usage: new ExpressError(message, statusCode)
 
 const app = express();
 const port = process.env.PORT || 5000;
-const dbUri = 'mongodb://localhost:27017/ramenlog'; // Local storage in DEV
-// process.env.MONGO_URI ||
+const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/ramenlog'; // Local storage in DEV
+
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
@@ -38,20 +39,31 @@ const Review = require('./models/review');
 /**---------------------------------------------------------
  * Express app configuration
  */
+
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+const secret = process.env.SECRET || 'thisissessionscretindevmode';
 app.use(
   session({
+    store: MongoStore.create({
+      mongoUrl: dbUri,
+      touchAfter: 24 * 3600,
+      crypto: {
+        secret: process.env.SECRET || 'thisissessionscretindevmode',
+      },
+    }),
     resave: false,
     saveUninitialized: false,
-    secret: process.env.SECRET || 'thisissessionscretindevmode',
+    secret,
     cookie: {
-      // secure: true,
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      // secure: true, // requires HTTPS enabled site (which localhost is not)
+      httpOnly: true,
+      expires: Date.now() + 100 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
     },
   })
 );
