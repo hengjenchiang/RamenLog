@@ -31,8 +31,7 @@ module.exports.getRamenDetail = async (req, res, next) => {
     return res.redirect('/ramens');
   }
 
-  // if (req.user)  console.log(ramen.author.equals(req.user._id)); //不能用 === 要用.equals (mongoose API)
-  res.render('ramens/show', { ramen, format });
+  return res.render('ramens/show', { ramen, format });
 };
 
 // @desc    Post new ramen

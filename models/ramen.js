@@ -45,6 +45,15 @@ ramenSchema.post('findOneAndDelete', async (doc) => {
   }
 });
 
+// Adding error middleware to handle casting error for ramen ObjectId
+ramenSchema.post('findOne', (err, doc, next) => {
+  if (err.name === 'CastError') {
+    next(new Error('找不到該拉麵'));
+  } else {
+    next();
+  }
+});
+
 const Ramen = mongoose.model('Ramen', ramenSchema);
 
 module.exports = Ramen;
