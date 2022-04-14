@@ -72,6 +72,10 @@ div.user-form {
   background-color: #f7eabc;
 }
 
+.spacing-block {
+  margin-bottom: 10rem;
+}
+
 .good-rating-color {
   color: #ff0000;
 }
@@ -79,6 +83,8 @@ div.user-form {
 .has-roundBorder {
   border-radius: 10px;
 }
+
+/* blog */
 
 .card-content .subtitle {
   display: flex;
@@ -88,6 +94,8 @@ div.user-form {
 span.required-field {
   color: #f32;
 }
+
+/* footer */
 
 footer {
   height: 64px;
@@ -117,9 +125,7 @@ footer .footer-link .image img {
   max-height: 100%;
 }
 
-.spacing-block {
-  margin-bottom: 10rem;
-}
+/* Landing page */
 
 section.hero {
   background: linear-gradient(

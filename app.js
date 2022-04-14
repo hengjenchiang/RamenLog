@@ -23,7 +23,8 @@ const ExpressError = require('./utils/ExpressError'); // usage: new ExpressError
 
 const app = express();
 const port = process.env.PORT || 5000;
-const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/ramenlog'; // Local storage in DEV
+const dbUri = 'mongodb://localhost:27017/ramenlog'; // Local storage in DEV
+// process.env.MONGO_URI ||
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
@@ -49,7 +50,7 @@ app.use(
     saveUninitialized: false,
     secret: process.env.SECRET || 'thisissessionscretindevmode',
     cookie: {
-      secure: true,
+      // secure: true,
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     },
   })
