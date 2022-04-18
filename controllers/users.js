@@ -39,8 +39,10 @@ module.exports.postNewUser = async (req, res, next) => {
 
 module.exports.getLoginForm = async (req, res, next) => {
   if (!req.user) {
-    if (!req.session.returnTo) req.session.returnTo = req.header('Referer');
-    res.render('users/login');
+    if (!req.session.returnTo) {
+      req.session.returnTo = req.header('Referer');
+    }
+    return res.render('users/login');
   } else {
     req.flash('error', '已經登入了，若想重新登入別的帳號');
     req.flash('error', '請先登出!');
@@ -48,7 +50,7 @@ module.exports.getLoginForm = async (req, res, next) => {
   }
 };
 
-module.exports.loginUser = async (req, res, next) => {
+module.exports.loginUser = (req, res) => {
   const nickname = req.user.nickname || '';
   req.flash('success', `成功登入！歡迎回來ラーメンログ ${nickname}`);
   const redirectUrl = req.session.returnTo || '/ramens';
@@ -56,7 +58,7 @@ module.exports.loginUser = async (req, res, next) => {
   res.redirect(redirectUrl);
 };
 
-module.exports.logoutUser = (req, res, next) => {
+module.exports.logoutUser = (req, res) => {
   if (req.user) {
     req.logout();
     req.flash('success', '成功登出囉～');

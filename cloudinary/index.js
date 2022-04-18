@@ -12,8 +12,8 @@ const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'RamenLog',
-    allowed_formats: ['jpeg', 'png', 'jpg'],
-    // format: async (req, file) => 'png', // supports promises as well
+    allowed_formats: ['jpeg', 'png', 'jpg', 'heic'],
+    format: 'jpg', // supports promises as well
     // public_id: (req, file) => 'computed-filename-using-request',
   },
 });

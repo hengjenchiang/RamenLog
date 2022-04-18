@@ -61,7 +61,6 @@ module.exports.validateReview = async function (req, res, next) {
     if (error.details) {
       const msg = error.details.map((el) => el.message).join(',');
       // standard Joi error msg.
-      console.log(req);
       const index = req.originalUrl.indexOf('review');
       const url = req.originalUrl.substring(0, index);
       req.flash('error', msg);

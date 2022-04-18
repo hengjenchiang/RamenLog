@@ -37,6 +37,25 @@ const Review = require('./models/review');
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
+ * Database - mongoDB connection
+ */
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(dbUri);
+    console.log(
+      `Successfully connect to mongoDB : ramenlog! ${conn.connection.host}`
+        .bgRed.black
+    );
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+connectDB();
+
+//----------------------------------------------------------
+
+/**---------------------------------------------------------
  * Express app configuration
  */
 
@@ -68,25 +87,6 @@ app.use(
   })
 );
 app.use(flash());
-//----------------------------------------------------------
-
-/**---------------------------------------------------------
- * Database - mongoDB connection
- */
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(dbUri);
-    console.log(
-      `Successfully connect to mongoDB : ramenlog! ${conn.connection.host}`
-        .bgRed.black
-    );
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-connectDB();
-
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
