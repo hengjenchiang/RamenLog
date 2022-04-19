@@ -12,9 +12,10 @@ const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'RamenLog',
-    allowed_formats: ['jpeg', 'png', 'jpg', 'heic'],
-    format: 'jpg', // supports promises as well
+    allowed_formats: ['jpeg', 'png', 'jpg'],
+    format: async (req, file) => 'jpg', // supports promises as well
     // public_id: (req, file) => 'computed-filename-using-request',
+    eager: [{ width: 2048, aspect_ratio: 1.5, crop: 'crop' }],
   },
 });
 

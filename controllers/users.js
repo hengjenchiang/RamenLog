@@ -55,14 +55,18 @@ module.exports.loginUser = (req, res) => {
   req.flash('success', `成功登入！歡迎回來ラーメンログ ${nickname}`);
   const redirectUrl = req.session.returnTo || '/ramens';
   delete req.session.returnTo;
-  res.redirect(redirectUrl);
+  req.session.save(() => {
+    res.redirect(redirectUrl);
+  });
 };
 
 module.exports.logoutUser = (req, res) => {
   if (req.user) {
     req.logout();
     req.flash('success', '成功登出囉～');
-    return res.redirect('/ramens');
+    req.session.save(() => {
+      return res.redirect('/ramens');
+    });
   } else {
     req.flash('error', '目前沒有登入喔！');
     res.redirect('/ramens');
