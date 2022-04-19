@@ -10,12 +10,14 @@ cloudinary.config({
 
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: 'RamenLog',
-    allowed_formats: ['jpeg', 'png', 'jpg'],
-    format: async (req, file) => 'jpg', // supports promises as well
-    // public_id: (req, file) => 'computed-filename-using-request',
-    eager: [{ width: 2048, aspect_ratio: 1.5, crop: 'crop' }],
+  params: async (req, file) => {
+    return {
+      folder: process.env.CLOUDINARY_FOLDER || 'RamenLog',
+      allowed_formats: ['jpeg', 'png', 'jpg'],
+      format: 'jpg', // supports promises as well
+      // public_id: (req, file) => 'computed-filename-using-request',
+      transformation: [{ width: 2048, aspect_ratio: 1.5, crop: 'lfill' }],
+    };
   },
 });
 
