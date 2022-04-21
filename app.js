@@ -70,7 +70,7 @@ app.use(
   session({
     store: MongoStore.create({
       mongoUrl: dbUri,
-      touchAfter: 24 * 3600,
+      touchAfter: 12 * 3600,
       crypto: {
         secret: process.env.SECRET || 'thisissessionscretindevmode',
       },
@@ -81,8 +81,8 @@ app.use(
     cookie: {
       // secure: true, // requires HTTPS enabled site (which localhost is not)
       httpOnly: true,
-      expires: Date.now() + 100 * 60 * 60 * 24,
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      expires: Date.now() + 1000 * 60 * 60 * 12,
+      maxAge: 1000 * 60 * 60 * 12, // half day
     },
   })
 );
