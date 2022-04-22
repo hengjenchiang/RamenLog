@@ -20,7 +20,15 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const colors = require('colors');
 const MongoStore = require('connect-mongo');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 const ExpressError = require('./utils/ExpressError'); // usage: new ExpressError(message, statusCode)
+const {
+  connectSrcUrls,
+  scriptSrcUrls,
+  styleSrcUrls,
+  fontSrcUrls,
+} = require('./helmetConfig');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -75,6 +83,7 @@ app.use(
         secret: process.env.SECRET || 'thisissessionscretindevmode',
       },
     }),
+    name: 's_ramen_id',
     resave: false,
     saveUninitialized: false,
     secret,
@@ -101,6 +110,39 @@ passport.use(User.createStrategy());
 // use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+//----------------------------------------------------------
+
+/**---------------------------------------------------------
+ * Configure security: helmet, monogoSanitize
+ */
+
+app.use(mongoSanitize()); // Must before defining routes
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [],
+        connectSrc: ["'self'", ...connectSrcUrls],
+        scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+        styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+        workerSrc: ["'self'", 'blob:'],
+        objectSrc: [],
+        imgSrc: [
+          "'self'",
+          'blob:',
+          'data:',
+          'https://res.cloudinary.com/dy2yyptcw/',
+          'http://res.cloudinary.com/dy2yyptcw/',
+          'https://images.unsplash.com/',
+          'http://images.unsplash.com/',
+        ],
+        fontSrc: ["'self'", ...fontSrcUrls],
+      },
+    },
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
