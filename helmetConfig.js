@@ -18,3 +18,8 @@ module.exports.fontSrcUrls = [
   'https://cdn.jsdelivr.net/',
   'https://ka-f.fontawesome.com/',
 ];
+
+module.exports.imgSrcUrls = [
+  'https://res.cloudinary.com/dy2yyptcw/',
+  'https://images.unsplash.com/',
+];

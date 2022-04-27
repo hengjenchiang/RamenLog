@@ -28,6 +28,7 @@ const {
   scriptSrcUrls,
   styleSrcUrls,
   fontSrcUrls,
+  imgSrcUrls,
 } = require('./helmetConfig');
 
 const app = express();
@@ -88,7 +89,7 @@ app.use(
     saveUninitialized: false,
     secret,
     cookie: {
-      // secure: true, // requires HTTPS enabled site (which localhost is not)
+      secure: process.env.NODE_ENV === 'development' ? false : true, // requires HTTPS enabled site (which localhost is not)
       httpOnly: true,
       expires: Date.now() + 1000 * 60 * 60 * 12,
       maxAge: 1000 * 60 * 60 * 12, // half day
@@ -127,15 +128,7 @@ app.use(
         styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
         workerSrc: ["'self'", 'blob:'],
         objectSrc: [],
-        imgSrc: [
-          "'self'",
-          'blob:',
-          'data:',
-          'https://res.cloudinary.com/dy2yyptcw/',
-          'http://res.cloudinary.com/dy2yyptcw/',
-          'https://images.unsplash.com/',
-          'http://images.unsplash.com/',
-        ],
+        imgSrc: ["'self'", 'blob:', 'data:', ...imgSrcUrls],
         fontSrc: ["'self'", ...fontSrcUrls],
       },
     },
