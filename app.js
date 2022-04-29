@@ -97,6 +97,13 @@ app.use(
   })
 );
 app.use(flash());
+
+// Heroku hosted on a reverse proxy. Inorder to use session in HTTPS.
+// If you have your node.js behind a proxy and are using secure: true, you need to set "trust proxy" in express:
+// ref: https://www.npmjs.com/package/express-session
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 //----------------------------------------------------------
 
 /**---------------------------------------------------------
