@@ -19,8 +19,13 @@ Here is a working live demo: [RamenLog](https://ramenlogtaiwan.herokuapp.com)
 - Frontend uses Bulma.io library and ejs as view engine.
 - Backend code architecture follows **Model-View-Controller**(MVC) pattern.
 - Routes are configured in **RESTful** patterns which provide API mapping from HTTP verbs to CRUD operations.
-- Using NoSQL database (MongoDB) for data storage.
-- Connect with cloudinary API to store images.
+- Using NoSQL database (**MongoDB**) for data storage.
+- Connect with cloudinary API to store and display images.
 - Utilizing **passport.js** for authentication as well as **session** to store user information and flashing messages.
 - Using **joi** validator to check whether data input meets the defined schema.
-- Deploy on Heroku live server.
+- Using **helmet** to set HTTP headers for security.
+- Deploy on Heroku HTTPS enabled live server.
+
+## Application design
+
+![Application design](./public/img/Application%20design.png)
