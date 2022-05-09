@@ -86,7 +86,7 @@ div.user-form {
 
 /* blog */
 
-.card-content .subtitle {
+.card-content .space-between {
   display: flex;
   justify-content: space-between;
 }

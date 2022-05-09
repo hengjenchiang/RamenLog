@@ -23,7 +23,10 @@
           <p class="title is-3 is-warning"><%= ramens[i].title %></p>
         </div>
         <div class="card-content">
-          <p class="subtitle is-6">評分：<%= ramens[i].rating %> / 10</p>
+          <p class="subtitle is-6 space-between">
+            評分：<%= ramens[i].rating %> / 10
+            <span class="is-5"><%= ramens[i].area %></span>
+          </p>
           <div class="content">
             <% if(ramens[i].thoughts.length > 200){ %>
             <p><%= ramens[i].thoughts.substring(0, 200) %> ...</p>
